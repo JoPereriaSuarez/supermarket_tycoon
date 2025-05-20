@@ -1,0 +1,17 @@
+{
+    "name": "STycoon.Economy",
+    "rootNamespace": "STycoon.Economy",
+    "references": [
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:80036f58830eb2b058adb28f5ad71301"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

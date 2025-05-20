@@ -1,0 +1,20 @@
+#IDE Folders
+.idea/
+.code/
+.vs/
+.vscode/
+
+#Temp and User folders
+[Bb]uild/
+[Tt]emp/
+
+#Unity Folders
+[Uu]serSettings/
+[Ll]ibrary/
+[Ll]ogs/
+
+#Csharp Projects
+*.csproj
+*.sln
+[Oo]bj/
+
