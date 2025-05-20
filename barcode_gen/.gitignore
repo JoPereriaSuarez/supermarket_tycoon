@@ -1,3 +1,8 @@
 #compile files
 *.so
 *.o
+
+#image files
+*.png
+*.jpeg
+*.bmp
