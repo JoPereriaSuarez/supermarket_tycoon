@@ -16,5 +16,6 @@
 #Csharp Projects
 *.csproj
 *.sln
+*.user
 [Oo]bj/
 
