@@ -6,8 +6,11 @@ namespace STycoon.Barcodes.Barcodes
 	{
 		private const uint MAX_VALUE = 99_999;
 		private const uint MIN_VALUE = 10_000;
+		private const ulong TYPE_MULTIPLIER = 100_000_000_000UL;
+		private const ulong LEFT_MULTIPLIER = 1_000_000UL;
+		private const ulong RIGHT_MULTIPLIER = 10UL;
 		
-		public static string Generate(byte type, uint left, uint right)
+		public static ulong Generate(byte type, uint left, uint right)
 		{
 			if (type > 9)
 				throw new ArgumentException("the type value should be in 0-9 range", nameof(type));
@@ -17,20 +20,12 @@ namespace STycoon.Barcodes.Barcodes
 			if (left < MIN_VALUE || right < MIN_VALUE)
 				throw new ArgumentException($"left and right value must be greater or equal than {MIN_VALUE}");
 
-			Span<char> buffer = stackalloc char[12];
-			if (!type.TryFormat(buffer.Slice(0), out _))
-				throw new ArgumentException($"cannot format {type}");
-			if (!left.TryFormat(buffer.Slice(1, 5), out _))
-				throw new ArgumentException($"cannot format {left}");
-			if (!right.TryFormat(buffer.Slice(6, 5), out _))
-				throw new ArgumentException($"cannot format {right}");
-
 			uint checkDigit = GetCheckDigit(type, left, right);
-			checkDigit.TryFormat(buffer.Slice(11), out _);
-			
-			return new string(buffer);
+			return checkDigit +
+			       ((ulong)right * RIGHT_MULTIPLIER) +
+			       ((ulong)left * LEFT_MULTIPLIER) +
+			       ((ulong)type * TYPE_MULTIPLIER);
 		}
-
 		private static uint GetCheckDigit(byte type, uint left, uint right)
 		{
 			uint tempLeft = left;

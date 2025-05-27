@@ -22,11 +22,11 @@ public class BarcodeTests
 	    });
     }
     
-    [TestCase(7, 25272, 47070, "725272470701"),
+    [TestCase(7, 25272, 47070, 725272470701), 
      Description("test a sample valid barcode: the return check digit should be equal")]
-    public void barcode_correct_check_digit(int type, int left, int right, string sample)
+    public void barcode_correct_check_digit(int type, int left, int right, long sample)
     {
-	    string barcode = BarcodeGenerator.Generate((byte)type, (uint)left, (uint)right);
-	    Assert.IsTrue(string.Equals(sample, barcode));
+	    ulong barcode = BarcodeGenerator.Generate((byte)type, (uint)left, (uint)right);
+	    Assert.AreEqual((ulong)sample, barcode);
     }
 }

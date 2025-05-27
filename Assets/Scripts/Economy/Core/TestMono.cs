@@ -1,12 +1,16 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using STycoon.Barcodes.Barcodes;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace STycoon.Barcodes
 {
     public class TestMono : MonoBehaviour
     {
+        private static readonly ProfilerMarker prepareMarker = new("Barcodes.Prepare");
+        
         [DllImport("barcode_gen", CallingConvention = CallingConvention.Cdecl)]
         private static extern int generate_barcode(string path, string code);
 
