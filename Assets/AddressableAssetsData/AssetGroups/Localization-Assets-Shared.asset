@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 55d89a3f458991200a83692b62baf416
+  m_SerializeEntries:
+  - m_GUID: 0183f448f85504c40ae182264420e3d4
+    m_Address: Assets/Desing/Localization/ProductsLoc/Products Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a38fe34459baa5afa39f1e269d8dcbb
+    m_Address: Assets/Desing/Localization/BrandsTable/Bramds Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 0af5c889e6c1076248dfab086f0bcca2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7bfdfa37e0a5960b1bf112377dfdea84, type: 2}
+    - {fileID: 11400000, guid: 85de487a962fbbda39704ec1dfbe02c9, type: 2}

@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using STycoon.Barcodes.Barcodes;
 using Unity.Profiling;
 using UnityEngine;
 
