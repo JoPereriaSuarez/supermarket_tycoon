@@ -27,6 +27,7 @@ namespace STycoon.Products
 		}
 
 		[SerializeField] private ushort id;
+		[SerializeField] private string editor_name;
 		[SerializeField] private LocalizedString title;
 		[SerializeField] private LocalizedString description;
 		[SerializeField] private Texture2D texture;
@@ -36,5 +37,8 @@ namespace STycoon.Products
 		public string Description() => description.GetLocalizedString();
 		public Texture2D Texture => texture;
 
+		#if UNITY_EDITOR
+		public string EditorName() => editor_name;
+		#endif
 	}
 }

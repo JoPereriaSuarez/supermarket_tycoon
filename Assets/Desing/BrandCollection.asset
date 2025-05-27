@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbea6b114b84b25ba76a4eef0fc88ae, type: 3}
   m_Name: BrandCollection
   m_EditorClassIdentifier: 
-  brand:
-  - code: 0
+  brand: []
