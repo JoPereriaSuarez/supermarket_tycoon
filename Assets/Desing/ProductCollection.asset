@@ -13,23 +13,26 @@ MonoBehaviour:
   m_Name: ProductCollection
   m_EditorClassIdentifier: 
   products:
-  - code: 65535
-    brandId: 65535
-    barcode: 0
+  - code: 47936
+    type: 3
+    brandId: 65533
+    barcode: 365533479360
     dimensions:
       x: 0
       y: 0
       z: 0
-  - code: 0
-    brandId: 0
-    barcode: 0
+  - code: 11236
+    type: 3
+    brandId: 65533
+    barcode: 365533112364
     dimensions:
       x: 0
       y: 0
       z: 0
-  - code: 0
-    brandId: 0
-    barcode: 0
+  - code: 11236
+    type: 3
+    brandId: 65533
+    barcode: 365533112364
     dimensions:
       x: 0
       y: 0

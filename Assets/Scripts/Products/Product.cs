@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
+using NUnit.Framework.Internal;
 using STycoon.Products.Utils;
+using Unity.Collections;
 using Unity.Mathematics;
-using UnityEngine.Serialization;
+using UnityEngine;
 using Utils;
+using Random = System.Random;
 
 namespace STycoon.Products
 {
     [Serializable]
-    public class Product
+    public struct Product
     {
         internal class Comparer : IComparer
         {
@@ -27,6 +30,10 @@ namespace STycoon.Products
         }
 
         public ushort code;
+#if UNITY_EDITOR
+        public DevID editor_id;
+#endif
+        public ProductType type;
         [Brand] public ushort brandId;
         /// <summary>
         /// Full Barcode, is public for serialization only
@@ -34,5 +41,11 @@ namespace STycoon.Products
         /// </summary>
         [Readonly] public ulong barcode;
         public float3 dimensions;
+
+        public static ushort RandomizeCode()
+        {
+            Random random = new();
+            return (ushort)random.Next(10_000, ushort.MaxValue);
+        } 
     }
 }

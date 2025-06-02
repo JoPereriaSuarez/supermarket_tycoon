@@ -31,14 +31,19 @@ namespace Producs.Editor
 			VisualElement container = new();
 
 			List<string> brands = collection.brands.Select(b => b.EditorName()).ToList();
-			DropdownField field = new(property.displayName, brands, 0);
+			PopupField<string> field = new(property.displayName, brands, 0);
+			field.labelElement.style.flexBasis = StyleKeyword.Auto;
+			field.labelElement.style.minWidth = 91;
+			field.labelElement.style.flexGrow = 0.12f;
 			field.RegisterValueChangedCallback(evt =>
 			{
 				property.intValue = collection.EDITOR_GetId(evt.newValue);
 				property.serializedObject.ApplyModifiedProperties();
 			});
-			PropertyField propertyField = new(property) { enabledSelf = false };
-			
+			PropertyField propertyField = new(property)
+			{
+				enabledSelf = false,
+			};
 			container.Add(field);
 			container.Add(propertyField);
 			return container;
