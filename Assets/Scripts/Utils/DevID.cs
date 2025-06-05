@@ -1,13 +1,15 @@
 using System;
 using Unity.Collections;
 
-namespace Utils
+namespace STycoon.Utils
 {
 	[Serializable]
 	public struct DevID
 	{
 	#if UNITY_EDITOR
 		public FixedString32Bytes id;
-	#endif
+		
+		public override string ToString() => id.ToString();
+#endif
 	}
 }

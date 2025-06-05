@@ -1,5 +1,5 @@
 using System;
-using STycoon.Barcodes.Barcodes;
+using STycoon.Barcodes.Tools;
 using STycoon.Products;
 using Unity.Collections;
 using UnityEditor;
@@ -75,7 +75,7 @@ namespace Producs.Editor
 
 			try
 			{
-				product.barcode = BarcodeGenerator.Generate((byte)product.type, product.brandId, product.code);
+				product.barcode = BarcodeTools.Generate((byte)product.type, product.brandId, product.code);
 				hasException = false;
 				property.FindPropertyRelative("barcode").ulongValue = product.barcode;
 				property.serializedObject.ApplyModifiedProperties();

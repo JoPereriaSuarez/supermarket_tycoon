@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using NUnit.Framework.Internal;
+using STycoon.Barcodes.Tools;
 using STycoon.Products.Utils;
-using Unity.Collections;
 using Unity.Mathematics;
-using UnityEngine;
 using Utils;
 using Random = System.Random;
 
@@ -31,7 +29,7 @@ namespace STycoon.Products
 
         public ushort code;
 #if UNITY_EDITOR
-        public DevID editor_id;
+        public STycoon.Utils.DevID editor_id;
 #endif
         public ProductType type;
         [Brand] public ushort brandId;
@@ -46,6 +44,8 @@ namespace STycoon.Products
         {
             Random random = new();
             return (ushort)random.Next(10_000, ushort.MaxValue);
-        } 
+        }
+
+        public bool IsValid() => BarcodeTools.Validate(barcode);
     }
 }

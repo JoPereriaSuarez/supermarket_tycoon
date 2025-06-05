@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Localization;
+using Utils;
 
 namespace STycoon.Products
 {
@@ -20,22 +22,28 @@ namespace STycoon.Products
 				if (y is not ProductInfo yInfo)
 					throw new NullReferenceException(nameof(yInfo));
 
-				return xInfo.code.CompareTo(yInfo.code);
+				return xInfo.barcode.CompareTo(yInfo.barcode);
 			}
 		}
 
-		[SerializeField] private ushort code;
+		#if UNITY_EDITOR
+		[SerializeField] private STycoon.Utils.DevID devID;
+		#endif
+		
+		[SerializeField] private ulong barcode;
 		[SerializeField] private LocalizedString name;
 		[SerializeField] private LocalizedString description;
-		[SerializeField] private Texture2D texture;
-		[SerializeField] private Texture2D barcode;
-		[SerializeField] private GameObject prefab;
+		[SerializeField] private AssetReference barcodeImage;
+		[SerializeField] private AssetReference prefab;
 
-		public ushort ID => code;
+		public ulong ID => barcode;
 		public string GetName() => name.GetLocalizedString();
 		public string GetDescription() => description.GetLocalizedString();
-		public Texture2D Texture => texture;
-		public Texture2D Barcode => barcode;
-		public GameObject Prefab => prefab;
+		// public Texture2D Barcode => barcode;
+		// public GameObject Prefab => prefab;
+
+		#if UNITY_EDITOR
+		public void EDITOR_SetCode(ulong barcode) => this.barcode = barcode;
+		#endif
 	}
 }

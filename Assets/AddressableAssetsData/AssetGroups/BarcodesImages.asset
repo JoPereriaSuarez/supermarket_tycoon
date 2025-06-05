@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: BarcodesImages
   m_GUID: b560610ed7e7b7e038aba8479878e813
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 569fe0c4b2955bf6e850c1bbf2cdd288
+    m_Address: Assets/Desing/BarcodesImages
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0af5c889e6c1076248dfab086f0bcca2, type: 2}
   m_SchemaSet:

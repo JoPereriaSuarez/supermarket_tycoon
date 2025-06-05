@@ -1,6 +1,6 @@
 using System;
 using NUnit.Framework;
-using STycoon.Barcodes.Barcodes;
+using STycoon.Barcodes.Tools;
 
 [Category("STycoon")]
 public class BarcodeTests
@@ -8,7 +8,6 @@ public class BarcodeTests
     [Test]
     public void barcode_generator_doesnt_throw()
     {
-	    // valid barcode
 	    Assert.DoesNotThrow(()=> { BarcodeTools.Generate(7, 25272, 47070); });
     }
     [TestCase(7, 100, 100),
@@ -32,14 +31,15 @@ public class BarcodeTests
 
     [TestCase(123456789012)]
     [TestCase(725272470701)]
-    [TestCase(565533629583)]
-    [TestCase(365533112364)]
     public void barcode_validates_true(long sample)
     {
 	    ulong barcode = (ulong)sample;
 	    Assert.IsTrue(BarcodeTools.Validate(barcode));
     }
     [TestCase(123456789013)]
+    [TestCase(565533629583)]
+    [TestCase(365533112364)]
+    [TestCase(765533245608)]
     public void barcode_validates_false(long sample)
     {
 	    ulong barcode = (ulong)sample;

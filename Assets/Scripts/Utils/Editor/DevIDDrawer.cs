@@ -2,7 +2,7 @@ using Unity.Collections;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace Utils.Editor
+namespace STycoon.Utils.Editor
 {
 	[CustomPropertyDrawer(typeof(DevID))]
 	internal class DevIDDrawer : PropertyDrawer

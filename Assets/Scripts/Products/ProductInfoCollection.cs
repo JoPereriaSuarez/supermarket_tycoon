@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace STycoon.Products
 {
-	[CreateAssetMenu(menuName = "Design/Products", fileName = "ProductInfoCollection")]
+	[CreateAssetMenu(menuName = "Design/Products/Info Collection", fileName = "ProductInfoCollection")]
 	public class ProductInfoCollection : ScriptableObject, ISortable
 	{
 		public ProductInfo[] products;

@@ -1,8 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
-using Unity.Mathematics;
 
-namespace STycoon.Barcodes.Barcodes
+namespace STycoon.Barcodes.Tools
 {
 	public static class BarcodeTools
 	{
@@ -25,18 +24,12 @@ namespace STycoon.Barcodes.Barcodes
 
 		public static bool Validate(ulong barcode)
 		{
+			if (barcode == 0)
+				return false;
+			
 			ulong inputCheckDigit = barcode % 10UL;
 			barcode /= 10UL;
-
-			uint right = (uint)(barcode % 100_000UL);
-			barcode /= 100_000UL;
-
-			uint left = (uint)(barcode % 100_000UL);
-			barcode /= 100_000UL;
-
-			byte type = (byte)(barcode % 100);
-
-			uint checkDigit = GetCheckDigit(type, left, right);
+			ulong checkDigit = GetCheckDigit(barcode);
 			return checkDigit == inputCheckDigit;
 		}
 		public static ulong Generate(byte type, uint left, uint right)
@@ -49,46 +42,33 @@ namespace STycoon.Barcodes.Barcodes
 			if (left < MIN_VALUE || right < MIN_VALUE)
 				throw new ArgumentException($"left and right value must be greater or equal than {MIN_VALUE}");
 
-			uint checkDigit = GetCheckDigit(type, left, right);
-			return checkDigit +
-			       ((ulong)right * RIGHT_MULTIPLIER) +
-			       ((ulong)left * LEFT_MULTIPLIER) +
-			       ((ulong)type * TYPE_MULTIPLIER);
+			ulong tempValue = (ulong)right * RIGHT_MULTIPLIER +
+			                     (ulong)left * LEFT_MULTIPLIER +
+			                     (ulong)type * TYPE_MULTIPLIER;
+			return GetCheckDigit(tempValue / 10) + tempValue;
 		}
-		private static uint GetCheckDigit(byte type, uint left, uint right)
+
+		private static ulong GetCheckDigit(ulong value)
 		{
-			uint tempLeft = left;
-			uint tempRight = right;
-			uint tempOdd = type;
-			uint tempEven = 0;
+			ulong tempOdd = 0;
+			ulong tempEven = 0;
 
-			while (tempLeft > 0)
+			byte counter = 1;
+			while (value > 0)
 			{
-				uint digit = tempLeft % 10;
-				if ((digit & 1) == 1)
+				ulong digit = value % 10;
+				if ((counter & 1) == 1)
 					tempOdd += digit;
 				else
 					tempEven += digit;
-
-				tempLeft /= 10;
-			}
-
-			while (tempRight > 0)
-			{
-				uint digit = tempRight % 10;
-				if ((digit & 1) == 1)
-					tempOdd += digit;
-				else
-					tempEven += digit;
-
-				tempRight /= 10;
+				value /= 10;
+				counter++;
 			}
 
 			tempOdd *= 3;
 			tempOdd += tempEven;
-			uint mod = tempOdd % 10;
-			uint checkDigit = mod == 0 ? mod : 10 - mod;
-			return checkDigit;
+			ulong mod = tempOdd % 10;
+			return mod == 0 ? mod : 10 - mod;
 		}
 	}
 }
